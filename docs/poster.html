@@ -72,6 +72,9 @@
     .prelim .fbox small { display:block; font-weight:500; font-size:.8em; color:var(--muted); }
     .prelim .fbox.accent small { color:#c9d6f0; }
     .prelim .arr { color:var(--blue); font-weight:900; font-size:22px; }
+    .prelim .eq { text-align:center; font-size:23px; margin:10px 0 2px; background:var(--accentbg);
+      border:1px solid #d0e0f6; border-radius:10px; padding:12px 10px; color:var(--navy); }
+    .prelim .eq i { font-style:italic; }
     .ov { border-top:2px solid currentColor; }
     .results-fig img { max-height:520px; width:auto; margin:0 auto; }
     .callout { background:var(--soft); border-left:8px solid var(--blue); border-radius:12px; padding:20px 24px;
@@ -120,16 +123,10 @@
             <li><b>Key idea:</b> reconstruction importance is <b>head-dominant</b> — no need to score all heads.</li>
           </ul>
           <div class="prelim">
-            <div class="t">Preliminary — how importance is scored (KVzip)</div>
-            <div class="flow">
-              <span class="fbox">Repeat prompt<br>&oplus; Context</span>
-              <span class="arr">&rarr;</span>
-              <span class="fbox">Teacher-forced<br>LLM pass</span>
-              <span class="arr">&rarr;</span>
-              <span class="fbox">Cross-attn<br><small><span class="ov">A</span> = Softmax(QK<sup>&#8868;</sup>)</small></span>
-              <span class="arr">&rarr;</span>
-              <span class="fbox accent">Importance<br><small>S<sub>l,h</sub>(i) = max<sub>g,j</sub> <span class="ov">A</span>[g,j,i]</small></span>
-            </div>
+            <div class="t">Preliminary — reconstruction importance (KVzip)</div>
+            The query is the <b>context itself</b> (reconstruct it), not any downstream question — so scoring is
+            <b>query-agnostic</b>. A KV pair's importance is the <b>max attention it receives</b> while reconstructing:
+            <div class="eq"><span class="ov">A</span> = Softmax(<i>Q</i><sub>recon</sub><i>K</i><sup>&#8868;</sup>)&nbsp;&nbsp;·&nbsp;&nbsp;<i>S</i><sub>l,h</sub>(i) = max<sub>&thinsp;g,j</sub> <span class="ov">A</span>[g,j,i]</div>
           </div>
         </div>
         <figure>
