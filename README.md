@@ -1,6 +1,6 @@
 # HybridKV: Query-Agnostic KV Cache Compression via Head-Dominant Context Reconstruction
 
-**Changwoo Baek, Kyeongbo Kong†** — Pusan National University · ICML 2026 Workshop
+**Changwoo Baek, Kyeongbo Kong†** — Pusan National University · ICMLw 2026
 
 🌐 Project page: served from `docs/` via GitHub Pages.
 
