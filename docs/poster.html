@@ -126,7 +126,7 @@
             <div class="t">Preliminary — reconstruction importance (KVzip)</div>
             The query is the <b>context itself</b> (reconstruct it), not any downstream question — so scoring is
             <b>query-agnostic</b>. A KV pair's importance is the <b>max attention it receives</b> while reconstructing:
-            <div class="eq"><span class="ov">A</span> = Softmax(<i>Q</i><sub>recon</sub><i>K</i><sup>&#8868;</sup>)&nbsp;&nbsp;·&nbsp;&nbsp;<i>S</i><sub>l,h</sub>(i) = max<sub>&thinsp;g,j</sub> <span class="ov">A</span>[g,j,i]</div>
+            <div class="eq"><span class="ov">A</span> = Softmax(<i>Q</i><sub>recon</sub><i>K</i><sup>&#8868;</sup>)<br><i>S</i><sub>l,h</sub>(i) = max<sub>&thinsp;g,j</sub> <span class="ov">A</span>[g,j,i]</div>
           </div>
         </div>
         <figure>
