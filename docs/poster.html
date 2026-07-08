@@ -62,7 +62,12 @@
     .step p { margin:0; font-size:21px; line-height:1.4; }
     .step b { color:var(--navy); }
 
-    .results-fig img { max-height:560px; width:auto; margin:0 auto; }
+    .prelim { margin-top:14px; background:#fbfcfe; border:1px solid var(--line); border-left:6px solid var(--teal);
+      border-radius:12px; padding:14px 18px; font-size:19px; line-height:1.4; }
+    .prelim .t { font-family:'Varela Round'; color:var(--navy); font-size:20px; margin-bottom:5px; }
+    .prelim .eq { text-align:center; font-size:24px; margin:9px 0 2px; }
+    .prelim .eq .ov { border-top:2px solid currentColor; }
+    .results-fig img { max-height:520px; width:auto; margin:0 auto; }
     .callout { background:var(--soft); border-left:8px solid var(--blue); border-radius:12px; padding:20px 24px;
       font-size:25px; line-height:1.42; }
     .callout b { color:var(--navy); }
@@ -101,12 +106,21 @@
     <div class="sec">
       <h2><i class="fas fa-lightbulb"></i> Problem &amp; Key Observation</h2>
       <div class="cols">
-        <ul class="tick">
-          <li>Long-context LLMs are bottlenecked by the <b>KV cache</b>.</li>
-          <li>Query-agnostic <b>context-reconstruction</b> (KVzip) gives a reusable cache, but adds huge prefill
-            overhead (<b>+34&nbsp;s</b> on 124K tokens).</li>
-          <li><b>Key idea:</b> reconstruction importance is <b>head-dominant</b> — no need to score all heads.</li>
-        </ul>
+        <div>
+          <ul class="tick">
+            <li>Long-context LLMs are bottlenecked by the <b>KV cache</b>.</li>
+            <li>Query-agnostic <b>context-reconstruction</b> (KVzip) gives a reusable cache, but adds huge prefill
+              overhead (<b>+34&nbsp;s</b> on 124K tokens).</li>
+            <li><b>Key idea:</b> reconstruction importance is <b>head-dominant</b> — no need to score all heads.</li>
+          </ul>
+          <div class="prelim">
+            <div class="t">Preliminary — reconstruction importance</div>
+            A teacher-forced pass over <b>[repeat prompt&nbsp;&oplus;&nbsp;context]</b> yields cross-attention
+            <span class="ov">A</span><sub>l,h</sub>&nbsp;=&nbsp;Softmax(<b>Q</b><sub>l,h</sub><b>K</b><sub>l,h</sub><sup>&#8868;</sup>).
+            Each KV pair's score is the <b>max attention</b> it receives:
+            <div class="eq"><i>S</i><sub>l,h</sub>(i) = max<sub>&thinsp;g,&thinsp;j</sub> <span class="ov">A</span><sub>l,h</sub>[g,&thinsp;j,&thinsp;i]</div>
+          </div>
+        </div>
         <figure>
           <img src="static/images/observation.png" alt="Head-dominant patterns">
           <figcaption><b>Head-dominant.</b> Importance concentrates in a few layer–head indices, stable across
