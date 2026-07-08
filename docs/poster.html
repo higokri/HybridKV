@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HybridKV — Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --navy:#1e3a8a; --blue:#2f6fe0; --teal:#06c29c; --ink:#1a2233; --muted:#4a5568;
+      --line:#dde3ee; --soft:#f4f7fc; --accentbg:#eaf1fc;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:#5a6b86; font-family:'Open Sans',sans-serif; color:var(--ink); }
+
+    /* Poster canvas: ISO-A portrait ratio (1:1.414). Scales to viewport width. */
+    .poster {
+      width: 1000px; /* base design width */
+      min-height: 1414px;
+      margin: 24px auto; background:#fff; position:relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      padding: 46px 46px 40px;
+    }
+    h1,h2,h3 { font-family:'Varela Round',sans-serif; margin:0; }
+
+    /* Header */
+    .head { text-align:center; border-bottom:4px solid var(--navy); padding-bottom:22px; }
+    .venue { display:inline-block; background:var(--navy); color:#fff; font-family:'Varela Round';
+      font-weight:700; letter-spacing:.03em; padding:6px 18px; border-radius:8px; font-size:20px; }
+    .head h1 { font-family:'Open Sans'; font-weight:800; color:var(--ink); line-height:1.18;
+      font-size:40px; margin:16px auto 12px; max-width:900px; }
+    .head h1 .g { color:var(--navy); }
+    .authors { font-size:22px; font-weight:600; }
+    .authors a { color:var(--ink); text-decoration:none; }
+    .affil { color:var(--muted); font-size:17px; margin-top:4px; }
+    .links { margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; font-size:15px; }
+    .links a { display:inline-flex; align-items:center; gap:7px; background:var(--soft); border:1px solid var(--line);
+      border-radius:999px; padding:6px 16px; color:var(--navy); font-weight:700; text-decoration:none; }
+
+    /* Stat strip */
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:22px 0 8px; }
+    .stat { background:var(--accentbg); border:1px solid #d4e2f7; border-radius:14px; padding:16px; text-align:center; }
+    .stat .n { font-family:'Varela Round'; font-size:38px; color:var(--navy); line-height:1; }
+    .stat .l { color:var(--muted); font-size:15px; margin-top:6px; font-weight:600; }
+
+    /* Sections */
+    .sec { margin-top:22px; }
+    .sec > h2 { font-size:24px; color:#fff; background:linear-gradient(90deg,var(--navy),var(--blue));
+      padding:9px 18px; border-radius:10px; display:flex; align-items:center; gap:10px; }
+    .sec .body { padding:14px 4px 0; font-size:17px; line-height:1.55; color:#26303f; }
+    .sec .body b { color:var(--navy); }
+    .cols { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+    ul.tick { list-style:none; padding:0; margin:8px 0 0; }
+    ul.tick li { position:relative; padding-left:26px; margin-bottom:8px; }
+    ul.tick li::before { content:"\f00c"; font-family:"Font Awesome 6 Free"; font-weight:900; color:var(--teal);
+      position:absolute; left:0; top:2px; font-size:14px; }
+
+    figure { margin:12px 0 0; }
+    figure img { width:100%; display:block; border:1px solid var(--line); border-radius:10px; background:#fff; }
+    figcaption { font-size:14px; color:var(--muted); margin-top:8px; line-height:1.45; text-align:justify; }
+    figcaption b { color:var(--ink); }
+
+    .callout { background:var(--soft); border-left:6px solid var(--blue); border-radius:10px; padding:14px 18px;
+      font-size:17px; margin-top:10px; }
+    .callout b { color:var(--navy); }
+
+    .foot { margin-top:26px; border-top:2px solid var(--line); padding-top:14px; display:flex;
+      justify-content:space-between; align-items:center; font-size:14px; color:var(--muted); flex-wrap:wrap; gap:8px; }
+    .foot b { color:var(--navy); }
+
+    @media print {
+      @page { size: A2 portrait; margin: 0; }
+      body { background:#fff; }
+      .poster { margin:0; box-shadow:none; width:100%; min-height:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <!-- HEADER -->
+    <div class="head">
+      <span class="venue">ICMLw 2026</span>
+      <h1><span class="g">HybridKV</span>: Query-Agnostic KV Cache Compression<br>via Head-Dominant Context Reconstruction</h1>
+      <div class="authors">
+        <a href="https://sites.google.com/view/changwoobaek00/%ED%99%88">Changwoo Baek</a> &nbsp;·&nbsp;
+        <a href="https://www.pnu-cvsp.com/prof">Kyeongbo Kong</a><sup>†</sup>
+      </div>
+      <div class="affil">Pusan National University &nbsp;·&nbsp; {higok18, kbkong}@pusan.ac.kr</div>
+      <div class="links">
+        <a href="https://openreview.net/forum?id=sWF4OAXw7u"><i class="fas fa-file-lines"></i> Paper (OpenReview)</a>
+        <a href="https://higokri.github.io/HybridKV/"><i class="fas fa-globe"></i> Project Page</a>
+      </div>
+    </div>
+
+    <!-- STAT STRIP -->
+    <div class="stats">
+      <div class="stat"><div class="n">−36%</div><div class="l">compression overhead</div></div>
+      <div class="stat"><div class="n">79.2%</div><div class="l">salient-head overlap across contexts</div></div>
+      <div class="stat"><div class="n">3 LLMs</div><div class="l">Qwen2.5-7B/14B-1M · Qwen3-4B</div></div>
+    </div>
+
+    <!-- MOTIVATION -->
+    <div class="sec">
+      <h2><i class="fas fa-circle-question"></i> Motivation</h2>
+      <div class="body">
+        The KV cache is the memory/runtime bottleneck of long-context LLMs. <b>Query-dependent</b> compression
+        (SnapKV, H2O, PyramidKV) cannot reuse one cache across different queries over the same context.
+        <b>Context-reconstruction</b> attention (KVzip) is <b>query-agnostic</b> — one compressed cache is reusable —
+        but it adds huge prefill-time overhead: for a 124K-token context it adds <b>34&nbsp;s+</b> on top of a ~14&nbsp;s
+        prefill. <b>Can query-agnostic importance be computed without scoring all attention heads?</b>
+      </div>
+    </div>
+
+    <!-- OBSERVATION + METHOD (two columns) -->
+    <div class="sec">
+      <h2><i class="fas fa-lightbulb"></i> Key Observation &nbsp; &amp; &nbsp; Method</h2>
+      <div class="cols">
+        <div>
+          <figure>
+            <img src="static/images/observation.png" alt="Head-dominant patterns">
+            <figcaption><b>Reconstruction importance is head-dominant.</b> It concentrates in a small subset of
+              layer–head indices that is largely preserved across contexts (top-50% head sets: <b>79.2%</b> Jaccard
+              overlap over 100 SQuAD contexts), while token-level variation persists <i>within</i> those heads.</figcaption>
+          </figure>
+        </div>
+        <div class="body" style="padding-top:0;">
+          <b>HybridKV</b> removes structurally redundant head-level computation while keeping context-adaptive
+          token decisions:
+          <ul class="tick">
+            <li><b>Offline:</b> aggregate reconstruction scores on a tiny calibration set (10 contexts) and pre-select
+              a fraction <i>k</i> of salient heads (head-retention ratio).</li>
+            <li><b>Deployment:</b> drop KV of pruned heads, then apply token-level reconstruction pruning
+              <i>only within</i> the retained heads.</li>
+            <li>Stays <b>query-agnostic</b> — one compressed cache reused across many queries.</li>
+          </ul>
+        </div>
+      </div>
+      <figure>
+        <img src="static/images/teaser.png" alt="Full vs hybrid context-reconstruction">
+        <figcaption><b>Full vs. hybrid reconstruction.</b> (a) full scoring over all heads → high overhead;
+          (b) hybrid pre-selects heads then scores tokens within them; (c) overhead and (d) accuracy vs. KV cache ratio.</figcaption>
+      </figure>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="sec">
+      <h2><i class="fas fa-chart-line"></i> Results</h2>
+      <figure>
+        <img src="static/images/results.png" alt="Accuracy vs KV cache ratio">
+        <figcaption><b>Accuracy vs. KV cache ratio</b> on SQuAD, GSM8K, Needle-in-a-Haystack, En.QA (and Average) for
+          Qwen2.5-7B-1M, Qwen2.5-14B-1M, Qwen3-4B. HybridKV matches or beats KVzip, SnapKV, H2O, PyramidKV at the same
+          cache ratio — especially in low/mid-cache regimes. The head-only KVzip&nbsp;(Head) variant collapses at low
+          ratios; HybridKV preserves accuracy by keeping token-level adaptivity within salient heads.</figcaption>
+      </figure>
+    </div>
+
+    <!-- EFFICIENCY + TAKEAWAY -->
+    <div class="sec">
+      <h2><i class="fas fa-gauge-high"></i> Efficiency &amp; Takeaway</h2>
+      <div class="cols">
+        <figure style="margin-top:6px;">
+          <img src="static/images/efficiency.png" alt="Efficiency analysis">
+          <figcaption><b>Efficiency on Qwen2.5-7B-1M.</b> Restricting reconstruction scoring to salient heads cuts
+            compression-only overhead by up to <b>36%</b> at comparable accuracy.</figcaption>
+        </figure>
+        <div>
+          <div class="callout">
+            <b>Head-dominant structure</b> makes accurate <b>query-agnostic</b> KV compression cheap:
+            pre-select heads once, prune tokens within them at deployment.
+          </div>
+          <ul class="tick" style="margin-top:14px; font-size:17px;">
+            <li>Matches full context-reconstruction accuracy.</li>
+            <li>Up to <b>36%</b> lower compression overhead.</li>
+            <li>Consistent across 3 long-context LLMs &amp; 4 benchmarks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <span><b>HybridKV</b> · Pusan National University · ICMLw 2026</span>
+      <span>Paper: openreview.net/forum?id=sWF4OAXw7u &nbsp;·&nbsp; Page: higokri.github.io/HybridKV</span>
+    </div>
+  </div>
+</body>
+</html>
