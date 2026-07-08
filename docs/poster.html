@@ -14,70 +14,77 @@
     * { box-sizing:border-box; }
     body { margin:0; background:#5a6b86; font-family:'Open Sans',sans-serif; color:var(--ink); }
 
-    /* Canvas = 61 × 91 cm (aspect 610:910). Base design width 1220px -> height 1820px. */
-    .poster { width:1220px; height:1820px; margin:24px auto; background:#fff; position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,.35); padding:52px 52px 40px; }
-    h1,h2,h3 { font-family:'Varela Round',sans-serif; margin:0; }
+    /* Canvas = 61 × 91 cm (aspect 610:910). 1220px = 61cm, 1820px = 91cm. */
+    .poster { width:1220px; height:1820px; overflow:hidden; margin:24px auto; background:#fff; position:relative;
+      box-shadow:0 20px 60px rgba(0,0,0,.35); padding:44px 48px; display:flex; flex-direction:column; }
+    h1,h2 { font-family:'Varela Round',sans-serif; margin:0; }
 
-    /* Header */
-    .head { text-align:center; border-bottom:5px solid var(--navy); padding-bottom:24px; }
+    .head { text-align:center; border-bottom:5px solid var(--navy); padding-bottom:18px; }
     .venue { display:inline-block; background:var(--navy); color:#fff; font-family:'Varela Round';
-      font-weight:700; letter-spacing:.03em; padding:8px 24px; border-radius:10px; font-size:28px; }
-    .head h1 { font-family:'Open Sans'; font-weight:800; color:var(--ink); line-height:1.15;
-      font-size:52px; margin:20px auto 16px; max-width:1080px; }
+      font-weight:700; padding:7px 22px; border-radius:9px; font-size:26px; }
+    .head h1 { font-family:'Open Sans'; font-weight:800; line-height:1.14; font-size:46px; margin:16px auto 12px; max-width:1080px; }
     .head h1 .g { color:var(--navy); }
-    .authors { font-size:30px; font-weight:600; }
+    .authors { font-size:28px; font-weight:600; }
     .authors a { color:var(--ink); text-decoration:none; }
-    .affil { color:var(--muted); font-size:22px; margin-top:6px; }
-    .links { margin-top:16px; display:flex; gap:16px; justify-content:center; }
+    .authors .aff { color:#7a869c; font-weight:500; font-size:.82em; }
+    .links { margin-top:12px; display:flex; gap:14px; justify-content:center; }
     .links a { display:inline-flex; align-items:center; gap:9px; background:var(--soft); border:1px solid var(--line);
-      border-radius:999px; padding:9px 22px; color:var(--navy); font-weight:700; text-decoration:none; font-size:20px; }
+      border-radius:999px; padding:8px 20px; color:var(--navy); font-weight:700; text-decoration:none; font-size:19px; }
 
-    /* Stat strip */
-    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin:28px 0 4px; }
-    .stat { background:var(--accentbg); border:1px solid #d0e0f6; border-radius:16px; padding:22px; text-align:center; }
-    .stat .n { font-family:'Varela Round'; font-size:58px; color:var(--navy); line-height:1; }
-    .stat .l { color:var(--muted); font-size:20px; margin-top:8px; font-weight:600; }
+    /* slim stat band */
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:20px 0 0; }
+    .stat { background:var(--accentbg); border:1px solid #d0e0f6; border-radius:14px; padding:12px 16px;
+      display:flex; align-items:center; gap:16px; }
+    .stat .n { font-family:'Varela Round'; font-size:46px; color:var(--navy); line-height:1; }
+    .stat .l { color:var(--muted); font-size:19px; font-weight:600; line-height:1.25; }
 
-    /* Sections */
-    .sec { margin-top:30px; }
-    .sec > h2 { font-size:32px; color:#fff; background:linear-gradient(90deg,var(--navy),var(--blue));
-      padding:12px 24px; border-radius:12px; display:flex; align-items:center; gap:12px; }
-    .cols { display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:16px; align-items:start; }
+    .sec { margin-top:22px; }
+    .sec > h2 { font-size:29px; color:#fff; background:linear-gradient(90deg,var(--navy),var(--blue));
+      padding:10px 22px; border-radius:11px; display:flex; align-items:center; gap:11px; }
+    .cols { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:14px; align-items:center; }
 
     ul.tick { list-style:none; padding:0; margin:0; }
-    ul.tick li { position:relative; padding-left:36px; margin-bottom:16px; font-size:25px; line-height:1.4; }
+    ul.tick li { position:relative; padding-left:34px; margin-bottom:14px; font-size:24px; line-height:1.38; }
+    ul.tick li:last-child { margin-bottom:0; }
     ul.tick li::before { content:"\f00c"; font-family:"Font Awesome 6 Free"; font-weight:900; color:var(--teal);
-      position:absolute; left:0; top:4px; font-size:20px; }
+      position:absolute; left:0; top:4px; font-size:19px; }
     ul.tick b { color:var(--navy); }
 
     figure { margin:0; }
     figure img { width:100%; display:block; border:1px solid var(--line); border-radius:12px; background:#fff; }
-    figcaption { font-size:19px; color:var(--muted); margin-top:10px; line-height:1.4; }
+    figcaption { font-size:18px; color:var(--muted); margin-top:9px; line-height:1.38; }
     figcaption b { color:var(--ink); }
 
-    .callout { background:var(--soft); border-left:8px solid var(--blue); border-radius:12px; padding:22px 26px;
-      font-size:27px; line-height:1.45; }
+    /* method mini-cards (horizontal, saves height) */
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:14px; }
+    .step { background:var(--soft); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+    .step .k { font-family:'Varela Round'; color:var(--navy); font-size:22px; margin-bottom:6px; display:flex; gap:9px; align-items:center; }
+    .step p { margin:0; font-size:21px; line-height:1.4; }
+    .step b { color:var(--navy); }
+
+    .results-fig img { max-height:560px; width:auto; margin:0 auto; }
+    .callout { background:var(--soft); border-left:8px solid var(--blue); border-radius:12px; padding:20px 24px;
+      font-size:25px; line-height:1.42; }
     .callout b { color:var(--navy); }
 
-    .foot { position:absolute; left:52px; right:52px; bottom:34px; border-top:2px solid var(--line);
-      padding-top:16px; display:flex; justify-content:space-between; font-size:19px; color:var(--muted); }
+    .spacer { flex:1; }
+    .foot { border-top:2px solid var(--line); padding-top:14px; display:flex; justify-content:space-between;
+      font-size:19px; color:var(--muted); }
     .foot b { color:var(--navy); }
 
-    @media print { @page { size: 61cm 91cm; margin:0; } body { background:#fff; }
+    @media print { @page { size:61cm 91cm; margin:0; } body { background:#fff; }
       .poster { margin:0; box-shadow:none; } }
   </style>
 </head>
 <body>
   <div class="poster">
-    <!-- HEADER -->
     <div class="head">
       <span class="venue">ICMLw 2026</span>
-      <h1><span class="g">HybridKV</span>: Query-Agnostic KV Cache Compression<br>via Head-Dominant Context Reconstruction</h1>
+      <h1><span class="g">HybridKV</span>: Query-Agnostic KV Cache Compression via Head-Dominant Context Reconstruction</h1>
       <div class="authors">
         <a href="https://sites.google.com/view/changwoobaek00/%ED%99%88">Changwoo Baek</a> &nbsp;·&nbsp;
         <a href="https://www.pnu-cvsp.com/prof">Kyeongbo Kong</a><sup>†</sup>
-        &nbsp;&nbsp;<span style="color:#7a869c;font-weight:500;font-size:.8em;">Pusan National University</span>
+        &nbsp; <span class="aff">Pusan National University</span>
       </div>
       <div class="links">
         <a href="https://openreview.net/forum?id=sWF4OAXw7u"><i class="fas fa-file-lines"></i> Paper</a>
@@ -85,22 +92,20 @@
       </div>
     </div>
 
-    <!-- STATS -->
     <div class="stats">
-      <div class="stat"><div class="n">&minus;36%</div><div class="l">compression overhead</div></div>
-      <div class="stat"><div class="n">79.2%</div><div class="l">salient-head overlap across contexts</div></div>
-      <div class="stat"><div class="n">3&nbsp;LLMs</div><div class="l">Qwen2.5-7B / 14B-1M · Qwen3-4B</div></div>
+      <div class="stat"><div class="n">&minus;36%</div><div class="l">compression<br>overhead</div></div>
+      <div class="stat"><div class="n">79.2%</div><div class="l">salient-head overlap<br>across contexts</div></div>
+      <div class="stat"><div class="n">3&nbsp;LLMs</div><div class="l">Qwen2.5-7B/14B-1M<br>· Qwen3-4B</div></div>
     </div>
 
-    <!-- PROBLEM + KEY IDEA -->
     <div class="sec">
-      <h2><i class="fas fa-lightbulb"></i> Problem &amp; Key Idea</h2>
+      <h2><i class="fas fa-lightbulb"></i> Problem &amp; Key Observation</h2>
       <div class="cols">
         <ul class="tick">
           <li>Long-context LLMs are bottlenecked by the <b>KV cache</b>.</li>
-          <li>Query-agnostic <b>context-reconstruction</b> (KVzip) gives a <i>reusable</i> compressed cache — but adds
-            huge prefill overhead (<b>+34&nbsp;s</b> on a 124K-token context).</li>
-          <li><b>Key idea:</b> reconstruction importance is <b>head-dominant</b> → don't score all heads.</li>
+          <li>Query-agnostic <b>context-reconstruction</b> (KVzip) gives a reusable cache, but adds huge prefill
+            overhead (<b>+34&nbsp;s</b> on 124K tokens).</li>
+          <li><b>Key idea:</b> reconstruction importance is <b>head-dominant</b> — no need to score all heads.</li>
         </ul>
         <figure>
           <img src="static/images/observation.png" alt="Head-dominant patterns">
@@ -110,48 +115,40 @@
       </div>
     </div>
 
-    <!-- METHOD -->
     <div class="sec">
       <h2><i class="fas fa-layer-group"></i> HybridKV</h2>
-      <div class="cols">
-        <ul class="tick">
-          <li><b>Offline:</b> pre-select a fraction <i>k</i> of salient heads from a tiny calibration set.</li>
-          <li><b>Deploy:</b> drop pruned heads, then reconstruct-and-prune tokens <b>only within retained heads</b>.</li>
-          <li>Stays <b>query-agnostic</b>: one compressed cache, reused across many queries.</li>
-        </ul>
-        <figure>
-          <img src="static/images/teaser.png" alt="Full vs hybrid reconstruction">
-          <figcaption><b>Full (all heads) vs. hybrid (selected heads).</b> Hybrid shrinks the search space, cutting
-            overhead while keeping accuracy.</figcaption>
-        </figure>
+      <div class="steps">
+        <div class="step"><div class="k"><i class="fas fa-1"></i> Offline</div>
+          <p>Pre-select a fraction <b>k</b> of salient heads from a tiny calibration set.</p></div>
+        <div class="step"><div class="k"><i class="fas fa-2"></i> Deploy</div>
+          <p>Drop pruned heads, then reconstruct-and-prune tokens <b>only within retained heads</b>.</p></div>
+        <div class="step"><div class="k"><i class="fas fa-3"></i> Reuse</div>
+          <p><b>Query-agnostic</b>: one compressed cache reused across many queries.</p></div>
       </div>
     </div>
 
-    <!-- RESULTS -->
     <div class="sec">
       <h2><i class="fas fa-chart-line"></i> Results — matches full reconstruction at lower cost</h2>
-      <figure style="margin-top:16px;">
+      <figure class="results-fig" style="text-align:center;">
         <img src="static/images/results.png" alt="Accuracy vs KV cache ratio">
-        <figcaption><b>Accuracy vs. KV cache ratio</b> across SQuAD, GSM8K, Needle, En.QA (and Average) on three LLMs.
-          HybridKV matches/outperforms KVzip, SnapKV, H2O, PyramidKV at the same ratio; the head-only variant collapses
-          at low ratios, HybridKV does not.</figcaption>
+        <figcaption style="text-align:left;"><b>Accuracy vs. KV cache ratio</b> on SQuAD, GSM8K, Needle, En.QA (and Average) for
+          Qwen2.5-7B-1M, Qwen2.5-14B-1M, Qwen3-4B. HybridKV matches/outperforms KVzip, SnapKV, H2O, PyramidKV at the
+          same ratio; the head-only variant collapses at low ratios, HybridKV does not.</figcaption>
       </figure>
     </div>
 
-    <!-- EFFICIENCY + TAKEAWAY -->
     <div class="sec">
-      <div class="cols">
+      <div class="cols" style="align-items:center;">
         <figure>
           <img src="static/images/efficiency.png" alt="Efficiency">
           <figcaption><b>Efficiency (Qwen2.5-7B-1M).</b> Up to <b>36%</b> less compression-only overhead at comparable accuracy.</figcaption>
         </figure>
-        <div class="callout">
-          <b>Takeaway.</b> The head-dominant structure of reconstruction attention makes accurate <b>query-agnostic</b>
-          KV compression cheap — pre-select heads once, prune tokens within them at deployment.
-        </div>
+        <div class="callout"><b>Takeaway.</b> Head-dominant reconstruction makes accurate <b>query-agnostic</b> KV
+          compression cheap — pre-select heads once, prune tokens within them at deployment.</div>
       </div>
     </div>
 
+    <div class="spacer"></div>
     <div class="foot">
       <span><b>HybridKV</b> · ICMLw 2026 · Pusan National University</span>
       <span>openreview.net/forum?id=sWF4OAXw7u &nbsp;·&nbsp; higokri.github.io/HybridKV</span>
